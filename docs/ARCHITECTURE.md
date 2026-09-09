@@ -6,7 +6,7 @@
 
 ## Stack
 
-- Astro static site for durable, accessible, content-first pages.
+- Dependency-free Node.js static site generator (`src/site.mjs` and `scripts/build.mjs`) for durable, accessible, content-first pages.
 - Cloudflare Worker as the edge entry point.
 - Cloudflare Static Assets binding serves `dist/`.
 - `/api/health` is the first Worker route and verifies the runtime without adding application-state complexity.

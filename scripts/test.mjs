@@ -1,7 +1,8 @@
 import { access, readFile, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
-const root = new URL('..', import.meta.url).pathname;
+const root = fileURLToPath(new URL('..', import.meta.url));
 execFileSync(process.execPath,[join(root,'scripts/build.mjs')],{stdio:'inherit'});
 const required=['index.html','framework/index.html','map/index.html','relational-intelligence/index.html','applications/index.html','experiments/index.html','experiments/delta/index.html','research/index.html','research/rcp/index.html','alive/index.html','library/index.html','roadmap/index.html','assets/global.css','assets/visuals/31.webp','assets/visuals/32.webp','assets/visuals/33.webp','assets/visuals/34.webp','assets/visuals/35.webp','sitemap.xml','robots.txt'];
 for(const f of required) await access(join(root,'dist',f));
