@@ -4,6 +4,7 @@ dist/
 .wrangler/
 .dev.vars
 .env
+.env.*
 .DS_Store
 coverage/
 private-evaluation/

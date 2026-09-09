@@ -13,3 +13,23 @@ a{color:inherit;text-decoration:none}button,input{font:inherit}img{max-width:100
 @media(max-width:980px){.nav-toggle{display:block}.nav-links{display:none;position:absolute;top:72px;left:20px;right:20px;flex-direction:column;align-items:flex-start;background:#090c10;border:1px solid var(--line);border-radius:14px;padding:18px}.nav-links.open{display:flex}.grid-3,.grid-4{grid-template-columns:repeat(2,1fr)}.flow{grid-template-columns:repeat(2,1fr)}.network{min-height:680px}.footer-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:680px){.shell{width:min(100% - 28px,var(--max))}.hero{padding:72px 0 54px}.hero h1{font-size:3.45rem}.section{padding:68px 0}.grid-2,.grid-3,.grid-4,.flow,.trial-context,.choices,.metrics{grid-template-columns:1fr}.visual figcaption{display:block}.visual figcaption span{display:block;margin-top:5px}.network{min-height:760px}.network-node{font-size:.68rem;padding:7px 9px}.network-node.primary{font-size:.8rem}.footer-grid{grid-template-columns:1fr}.page-hero{padding-top:70px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/* Release accessibility and responsive corrections. */
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:4px}
+main,[tabindex="-1"]{scroll-margin-top:90px}
+fieldset.field{border:0;padding:0;min-width:0}
+.field legend{font-weight:700;margin-bottom:8px}
+.field .choice{display:flex}
+h1,h2,h3{overflow-wrap:anywhere}
+.no-js .nav-toggle{display:none}
+.no-js .nav-links{display:flex;position:static;flex-wrap:wrap}
+.network-detail{overflow-wrap:anywhere}
+@media(max-width:680px){
+  .hero h1{font-size:clamp(2.15rem,10vw,3.45rem)}
+  .network{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:18px;min-height:0!important}
+  .network svg{display:none}
+  .network .network-node{position:static;transform:none;white-space:normal;min-width:0;min-height:44px;font-size:.83rem;padding:10px}
+  .network .network-detail{position:static;grid-column:1/-1;transform:none;width:auto;max-width:none}
+  .nav-links a{padding-block:8px}
+}
