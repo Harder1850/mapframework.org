@@ -1,14 +1,17 @@
 {
   "$schema": "https://raw.githubusercontent.com/cloudflare/workers-sdk/main/packages/wrangler/config-schema.json",
-  "name": "mapframework-org",
+  "name": "mapframework-org-staging",
+  "workers_dev": true,
+  "preview_urls": false,
+  "routes": [],
   "main": "src/worker.js",
   "compatibility_date": "2026-09-06",
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
-    "run_worker_first": [
-      "/api/*"
-    ]
+    "run_worker_first": true,
+    "not_found_handling": "404-page",
+    "html_handling": "force-trailing-slash"
   },
   "observability": {
     "enabled": true

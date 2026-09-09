@@ -5,8 +5,14 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "test": "node scripts/test.mjs",
+    "test": "node scripts/test.mjs && node --test tests/*.test.mjs",
     "dev": "node scripts/dev.mjs",
     "deploy": "npx wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "4.130.0"
+  },
+  "overrides": {
+    "sharp": "0.35.4"
   }
 }
