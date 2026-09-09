@@ -154,7 +154,7 @@ Cloudflare provides production deployment and infrastructure, including as appro
 
 `mapframework.org` is the canonical public domain.
 
-GoDaddy is the domain registrar only.
+GoDaddy is the domain registrar only. Do not change nameservers or DNS until the Cloudflare deployment has been validated and explicit domain cutover is approved.
 
 ---
 
@@ -185,4 +185,37 @@ Before publishing material, consider:
 - evidentiary status
 - overlap with reserved research or publications
 
-Public availability should be a deliberate decision, not an automatic consequence of
+Public availability should be a deliberate decision, not an automatic consequence of repository availability or deployment capability.
+
+See `docs/PUBLICATION_FIREWALL.md` for the operational publication boundary. In particular, do not commit unpublished HBR-targeted Learn the Delta material, private ALIVE implementation details, unpublished experimental results, or protected/private evaluation instances.
+
+---
+
+## Local Development
+
+```bash
+npm ci
+npm run dev
+```
+
+## Validate
+
+```bash
+npm run test
+```
+
+## Production Build
+
+```bash
+npm run build
+```
+
+## Cloudflare Preview Deployment
+
+```bash
+npx wrangler deploy
+```
+
+This deploys according to the authenticated Cloudflare account, initially to a preview/`workers.dev` endpoint. It does **not** require or imply DNS changes for `mapframework.org`.
+
+D1 and R2 should remain unconfigured until they are required by an approved production capability.
