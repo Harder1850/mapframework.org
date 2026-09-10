@@ -4,6 +4,16 @@
   "workers_dev": true,
   "preview_urls": false,
   "routes": [],
+  "vars": { "SITE_ENV": "staging" },
+  "env": {
+    "production": {
+      "name": "mapframework-org",
+      "workers_dev": false,
+      "preview_urls": false,
+      "routes": [],
+      "vars": { "SITE_ENV": "production" }
+    }
+  },
   "main": "src/worker.js",
   "compatibility_date": "2026-09-06",
   "assets": {

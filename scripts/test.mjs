@@ -22,7 +22,7 @@ const notFound=await readFile(join(root,'dist/404.html'),'utf8');
 if(/http-equiv="refresh"/i.test(notFound)) throw new Error('404 must not redirect');
 for(const f of htmlFiles){
   const html=await readFile(f,'utf8');
-  if(!html.includes('noindex')) throw new Error(`Staging indexing guard missing: ${f}`);
+  if(!f.endsWith('404.html') && html.includes('noindex')) throw new Error(`Production HTML has a staging indexing guard: ${f}`);
   for(const match of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)){
     if(!match[1].includes('application/ld+json') && match[2].trim()) throw new Error(`Executable inline script: ${f}`);
   }
@@ -31,3 +31,7 @@ for(const f of htmlFiles){
 const config=JSON.parse(await readFile(join(root,'wrangler.jsonc'),'utf8'));
 if(config.name!=='mapframework-org-staging'||config.workers_dev!==true||config.routes.length||config.d1_databases||config.r2_buckets) throw new Error('Staging deployment boundary violated');
 console.log(`PASS: ${required.length} required artifacts; ${htmlFiles.length} HTML files; metadata/accessibility smoke checks; publication-firewall smoke checks.`);
+
+const production=config.env.production;
+if(production.name!=='mapframework-org'||production.workers_dev!==false||production.preview_urls!==false||production.routes.length||production.vars.SITE_ENV!=='production'||production.d1_databases||production.r2_buckets) throw new Error('Production preparation must not attach any domain or storage');
+if(config.assets.run_worker_first!==true) throw new Error('Preview indexing requires Worker-first routing');
