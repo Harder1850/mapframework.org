@@ -1,5 +1,7 @@
 # Staging release review and operation
 
+Historical baseline: the production-preparation PR supersedes the indexing/cutover instructions below. See [PRODUCTION_CUTOVER.md](PRODUCTION_CUTOVER.md). The default Wrangler target remains staging; the explicit production environment remains unrouted until separately authorized cutover.
+
 This release targets only `mapframework-org-staging` on Cloudflare `workers.dev`. GitHub remains the source of truth. Deploy the reviewed `main` checkout; do not edit the Worker through the Cloudflare dashboard.
 
 ## Review findings resolved before merge

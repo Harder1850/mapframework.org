@@ -47,7 +47,7 @@ for(const path of ['/README.md','/docs/PUBLICATION_FIREWALL.md','/src/site.mjs',
 }
 const health=await fetch(new URL('/api/health',base));
 assert.equal(health.status,200);
-assert.equal((await health.json()).productionDomainConnected,false);
+assert.equal((await health.json()).canonicalHost,false);
 assert.equal(health.headers.get('cache-control'),'no-store');
 assert.match(await (await fetch(new URL('/robots.txt',base))).text(),/Disallow: \//);
 assert.equal((await fetch(new URL('/',base),{method:'POST'})).status,405);

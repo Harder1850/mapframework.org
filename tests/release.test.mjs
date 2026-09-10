@@ -20,7 +20,7 @@ test('escalation penalizes false alarms and undefined denominators remain explic
 test('staging health is uncached, non-indexable, and explicitly not production', async () => {
   const response = await worker.fetch(new Request('https://mapframework-org-staging.example.workers.dev/api/health'), {});
   assert.equal(response.status, 200);
-  assert.equal((await response.json()).productionDomainConnected, false);
+  assert.equal((await response.json()).canonicalHost, false);
   assert.equal(response.headers.get('cache-control'), 'no-store');
   assert.match(response.headers.get('x-robots-tag'), /noindex/);
   assert.equal(response.headers.get('x-content-type-options'), 'nosniff');
